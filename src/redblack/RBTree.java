@@ -37,34 +37,35 @@ public class RBTree
         header.right = nullNode;
     }
     /* Function to insert item */
-    public void insert(String item)
+    public void insert( String item )
     {
-    	current = parent = grand = header;
+        current = parent = grand = header;
         nullNode.data = item;
-        while (current.data.compareTo(item)!=0)
-        {            
-            great = grand; 
-            grand = parent; 
-            parent = current;
-            //current = item.compareTo(current.data) ? current.left : current.right;
-            if (item.compareTo(current.data)>=0)
-            	current=current.right;
-            else current=current.left;
-            // Check if two red children and fix if so            
-            if (current.left.color == RED && current.right.color == RED)
-                handleReorient(item);
+
+        while( current.data.compareTo( item ) != 0 )
+        {
+            great = grand; grand = parent; parent = current;
+            current = item.compareTo( current.data ) < 0 ?
+                         current.left : current.right;
+
+                // Check if two red children; fix if so
+            if( current.left.color == RED && current.right.color == RED )
+                 handleReorient( item );
         }
-        // Insertion fails if already present
-        if (current != nullNode)
+
+            // Insertion fails if already present
+        if( current != nullNode )
             return;
-        current = new RedBlackNode(item, nullNode, nullNode);
-        // Attach to parent
-        if (item.compareTo(parent.data)>=0)
-            parent.right = current;
-        else
+        current = new RedBlackNode( item, nullNode, nullNode );
+
+            // Attach to parent
+        if( item.compareTo( parent.data ) < 0 )
             parent.left = current;
+        else
+            parent.right = current;
         handleReorient( item );
     }
+
     private void handleReorient(String item)
     {
         // Do the color flip
@@ -87,15 +88,13 @@ public class RBTree
     }      
     private RedBlackNode rotate(String item, RedBlackNode parent)
     {
-        if(item.compareTo(parent.data)>=0)//item < parent.element
-            //return parent.left = item < parent.left.data ? rotateWithLeftChild(parent.left) : rotateWithRightChild(parent.left) ;  
+        if(item.compareTo(parent.data)>=0)
         	if (item.compareTo(parent.left.data)>=0)
-        		return parent.left= rotateWithRightChild(parent.left);
-        	else return parent.left= rotateWithLeftChild(parent.left);
-        //else return parent.right = item < parent.right.data ? rotateWithLeftChild(parent.right) : rotateWithRightChild(parent.right);
+        		return parent.left= rotateWithRightChild(parent.left); //LL
+        	else return parent.left= rotateWithLeftChild(parent.left); //LR
         else if(item.compareTo(parent.right.data)>=0)
-        		return parent.right=rotateWithRightChild(parent.right);
-        	else return parent.right=rotateWithLeftChild(parent.right);
+        		return parent.right=rotateWithRightChild(parent.right); //RR
+        	else return parent.right=rotateWithLeftChild(parent.right); //RL
             
     }
     /* Rotate binary tree node with left child */
@@ -142,7 +141,6 @@ public class RBTree
         while ((r != nullNode) && !found)
         {
             String rval = r.data;
-            //if (val < rval)
             if (val.compareTo(rval)>0)	
                 r = r.right;
             else if (val.compareTo(rval)<0)
