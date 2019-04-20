@@ -69,7 +69,7 @@ public class Main
                System.out.println("Wrong Entry \n ");
                break;    
            }
-           /*  Display tree
+           /* Display tree
            System.out.print("\nPost order(Left-Right-Root): ");
            rbt.postorder();
            System.out.print("\nPre order(Root-Left-Right): ");
@@ -80,11 +80,10 @@ public class Main
            System.out.print("\nIn order(Left-Root-Right):\n");
            rbt.printTree();
            System.out.println("Nodes = "+ rbt.countNodes());
+           System.out.println("Tree Height = "+ rbt.maxDepth());
            System.out.println("Dictionary Words = "+counter);
            System.out.println("\nDo you want to continue (Type y or n) \n");
            ch = scan.next().charAt(0);                        
        } while (ch == 'Y'|| ch == 'y');               
     }
-   
-
 }

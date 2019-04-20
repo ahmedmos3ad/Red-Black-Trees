@@ -129,6 +129,26 @@ public class RBTree
             return l;
         }
     }
+    public int maxDepth() {
+    	return maxDepth(header.right);
+    }
+    private int maxDepth(RedBlackNode r)  
+    { 
+        if (r == nullNode) 
+            return 0; 
+        else 
+        { 
+            /* compute the depth of each subtree */
+            int lDepth = maxDepth(r.left); 
+            int rDepth = maxDepth(r.right); 
+   
+            /* use the larger one */
+            if (lDepth > rDepth) 
+                return (lDepth + 1); 
+             else 
+                return (rDepth + 1);
+        } 
+    } 
     /* Functions to search for an element */
     public boolean search(String val)
     {
