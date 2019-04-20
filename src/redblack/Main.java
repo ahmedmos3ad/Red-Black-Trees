@@ -10,7 +10,8 @@ public class Main
 {
     public static void main(String[] args)
     {            
-       Scanner scan = new Scanner(System.in);
+    	int counter=0;
+    	Scanner scan = new Scanner(System.in);
        /* Creating object of RedBlack Tree */
        RBTree rbt = new RBTree(String.valueOf(0)); 
        System.out.println("Red Black Tree Test\n");          
@@ -49,8 +50,7 @@ public class Main
                break;
            case 6 :
            		try {
-           			int counter=0;
-           			Scanner reader=new Scanner(new File("English Dictionary.txt"));
+           			Scanner reader=new Scanner(new File("Dictionary.txt"));
            			reader.useDelimiter("[\n]");
            			String word;
            			while (reader.hasNext()) 
@@ -60,7 +60,7 @@ public class Main
            				counter++;
            				}
            			reader.close();
-           			System.out.println(counter);
+           			//System.out.println(counter);
            			} 
            		catch (IOException e) {
            		e.printStackTrace();}
@@ -75,8 +75,12 @@ public class Main
            System.out.print("\nPre order(Root-Left-Right): ");
            rbt.preorder();
            System.out.print("\nIn order(Left-Root-Right): ");
-           rbt.inorder(); */
-
+           rbt.inorder();
+           */
+           System.out.print("\nIn order(Left-Root-Right):\n");
+           rbt.printTree();
+           System.out.println("Nodes = "+ rbt.countNodes());
+           System.out.println("Dictionary Words = "+counter);
            System.out.println("\nDo you want to continue (Type y or n) \n");
            ch = scan.next().charAt(0);                        
        } while (ch == 'Y'|| ch == 'y');               

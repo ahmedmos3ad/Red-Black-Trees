@@ -66,37 +66,36 @@ public class RBTree
         handleReorient( item );
     }
 
-    private void handleReorient(String item)
+    private void handleReorient( String item )
     {
-        // Do the color flip
+            // Do the color flip
         current.color = RED;
         current.left.color = BLACK;
         current.right.color = BLACK;
 
-        if (parent.color == RED)   
+        if( parent.color == RED )   // Have to rotate
         {
-            // Have to rotate
             grand.color = RED;
-            //if (item < grand.data != item < parent.data)
-            if (item.compareTo(grand.data)<0 != item.compareTo(parent.data)<0)
+            if((item.compareTo(grand.data)<0) != (item.compareTo(parent.data)<0))
                 parent = rotate( item, grand );  // Start dbl rotate
-            current = rotate(item, great );
+            current = rotate( item, great );
             current.color = BLACK;
         }
-        // Make root black
-        header.right.color = BLACK; 
-    }      
-    private RedBlackNode rotate(String item, RedBlackNode parent)
-    {
-        if(item.compareTo(parent.data)>=0)
-        	if (item.compareTo(parent.left.data)>=0)
-        		return parent.left= rotateWithRightChild(parent.left); //LL
-        	else return parent.left= rotateWithLeftChild(parent.left); //LR
-        else if(item.compareTo(parent.right.data)>=0)
-        		return parent.right=rotateWithRightChild(parent.right); //RR
-        	else return parent.right=rotateWithLeftChild(parent.right); //RL
-            
+        header.right.color = BLACK; // Make root black
     }
+    private RedBlackNode rotate(String item, RedBlackNode parent )
+    {
+        if( item.compareTo( parent.data) < 0 )
+            return parent.left = item.compareTo( parent.left.data) < 0 ?
+                rotateWithLeftChild( parent.left )  :  // LL
+                rotateWithRightChild( parent.left ) ;  // LR
+        else
+            return parent.right = item.compareTo( parent.right.data) < 0 ?
+                rotateWithLeftChild( parent.right ) :  // RL
+                rotateWithRightChild( parent.right );  // RR
+    }
+            
+    
     /* Rotate binary tree node with left child */
     private RedBlackNode rotateWithLeftChild(RedBlackNode k2)
     {
@@ -205,4 +204,23 @@ public class RBTree
             System.out.print(r.data +""+c+" ");
         }
     }     
+    public void printTree( )
+    {
+        if( isEmpty( ) )
+            System.out.println("Empty tree");
+        else
+            printTree(header.right);
+    }
+    private void printTree(RedBlackNode t)
+    {
+        if( t != nullNode)
+        {
+            char c='B';
+        	printTree(t.left);
+        	if (t.color==0)
+        		c='R';
+            System.out.println(t.data+"-"+c);
+            printTree(t.right);
+        }
+    }
 }
