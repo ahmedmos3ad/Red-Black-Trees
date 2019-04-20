@@ -156,7 +156,9 @@ public class RBTree
     /* Function for inorder traversal */ 
     public void inorder()
     {
-        inorder(header.right);
+        if(isEmpty())
+        	System.out.println("Empty tree");
+        else inorder(header.right);
     }
     private void inorder(RedBlackNode r)
     {
@@ -172,8 +174,9 @@ public class RBTree
     }
     /* Function for preorder traversal */
     public void preorder()
-    {
-        preorder(header.right);
+    {	if(isEmpty())
+    		System.out.println("Empty tree");
+    	else preorder(header.right);
     }
     private void preorder(RedBlackNode r)
     {
@@ -189,8 +192,10 @@ public class RBTree
     }
     /* Function for postorder traversal */
     public void postorder()
-    {
-        postorder(header.right);
+    {	
+    	if (isEmpty())
+    		System.out.println("Empty tree");
+    	else postorder(header.right);
     }
     private void postorder(RedBlackNode r)
     {
@@ -206,7 +211,7 @@ public class RBTree
     }     
     public void printTree( )
     {
-        if( isEmpty( ) )
+        if( isEmpty())
             System.out.println("Empty tree");
         else
             printTree(header.right);
