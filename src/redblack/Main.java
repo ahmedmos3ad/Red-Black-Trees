@@ -26,6 +26,7 @@ public class Main
            System.out.println("4. check empty");
            System.out.println("5. clear tree");
            System.out.println("6. insert Dictionary");
+           System.out.println("7. Print Tree");
 
            int choice = scan.nextInt();            
            switch (choice)
@@ -65,6 +66,9 @@ public class Main
            		catch (IOException e) {
            		e.printStackTrace();}
            		break;
+           case 7 :
+        	   System.out.print("\nIn order(Left-Root-Right):\n");
+               rbt.printTree();
            default : 
                System.out.println("Wrong Entry \n ");
                break;    
@@ -77,8 +81,8 @@ public class Main
            System.out.print("\nIn order(Left-Root-Right): ");
            rbt.inorder();
            */
-           System.out.print("\nIn order(Left-Root-Right):\n");
-           rbt.printTree();
+           /*System.out.print("\nIn order(Left-Root-Right):\n");
+           rbt.printTree();*/
            System.out.println("Nodes = "+ rbt.countNodes());
            System.out.println("Tree Height = "+ rbt.maxDepth());
            System.out.println("Dictionary Words = "+counter);
