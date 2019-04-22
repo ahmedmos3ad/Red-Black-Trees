@@ -16,6 +16,7 @@ public class Main
        RBTree rbt = new RBTree(String.valueOf(0)); 
        System.out.println("Red Black Tree Test\n");          
        char ch;
+       String Deletethis;
        /*  Perform tree operations  */
        do    
        {
@@ -27,6 +28,7 @@ public class Main
            System.out.println("5. clear tree");
            System.out.println("6. insert Dictionary");
            System.out.println("7. Print Tree");
+           System.out.println("8. Delete");
 
            int choice = scan.nextInt();            
            switch (choice)
@@ -51,7 +53,7 @@ public class Main
                break;
            case 6 :
            		try {
-           			Scanner reader=new Scanner(new File("Dictionary.txt"));
+           			Scanner reader=new Scanner(new File("test.txt"));
            			reader.useDelimiter("[\n]");
            			String word;
            			while (reader.hasNext()) 
@@ -69,6 +71,14 @@ public class Main
            case 7 :
         	   System.out.print("\nIn order(Left-Root-Right):\n");
                rbt.printTree();
+               break;
+           case 8 : 
+               System.out.println("Enter String to delete");
+               Deletethis=scan.next();
+               System.out.println("Search result : "+ rbt.search(Deletethis));
+               if (rbt.search(Deletethis))
+            	   rbt.remove(Deletethis);
+               break;
            default : 
                System.out.println("Wrong Entry \n ");
                break;    
