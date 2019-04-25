@@ -1,8 +1,6 @@
 package redblack;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,9 +9,10 @@ public class Main
     public static void main(String[] args)
     {            
     	int counter=0;
-    	Scanner scan = new Scanner(System.in);
+    	@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
        /* Creating object of RedBlack Tree */
-       RBTree rbt = new RBTree(String.valueOf(0)); 
+       RBTree rbt = new RBTree(); 
        System.out.println("Red Black Tree Test\n");          
        char ch;
        String Deletethis;
@@ -29,16 +28,17 @@ public class Main
            System.out.println("6. insert Dictionary");
            System.out.println("7. Print Tree");
            System.out.println("8. Delete");
+           
 
            int choice = scan.nextInt();            
            switch (choice)
            {
            case 1 : 
-               System.out.println("Enter integer element to insert");
+               System.out.println("Enter String element to insert");
                rbt.insert(scan.next());                     
                break;                          
            case 2 : 
-               System.out.println("Enter integer element to search");
+               System.out.println("Enter String element to search");
                System.out.println("Search result : "+ rbt.search(scan.next()));
                break;                                          
            case 3 : 
@@ -63,7 +63,6 @@ public class Main
            				counter++;
            				}
            			reader.close();
-           			//System.out.println(counter);
            			} 
            		catch (IOException e) {
            		e.printStackTrace();}
@@ -75,24 +74,18 @@ public class Main
            case 8 : 
                System.out.println("Enter String to delete");
                Deletethis=scan.next();
-               System.out.println("Search result : "+ rbt.search(Deletethis));
-               if (rbt.search(Deletethis))
-            	   rbt.remove(Deletethis);
+               RedBlackNode node = new RedBlackNode(Deletethis);
+               System.out.print("\nDeleting item " + Deletethis);
+               if (rbt.delete(node)) {
+                   System.out.print(": deleted!\n");
+               } else {
+                   System.out.print(": does not exist!\n");
+               }
                break;
            default : 
                System.out.println("Wrong Entry \n ");
                break;    
            }
-           /* Display tree
-           System.out.print("\nPost order(Left-Right-Root): ");
-           rbt.postorder();
-           System.out.print("\nPre order(Root-Left-Right): ");
-           rbt.preorder();
-           System.out.print("\nIn order(Left-Root-Right): ");
-           rbt.inorder();
-           */
-           /*System.out.print("\nIn order(Left-Root-Right):\n");
-           rbt.printTree();*/
            System.out.println("Nodes = "+ rbt.countNodes());
            System.out.println("Tree Height = "+ rbt.maxDepth());
            System.out.println("Dictionary Words = "+counter);
