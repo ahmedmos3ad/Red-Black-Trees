@@ -25,6 +25,7 @@ public class RBTree
         header = new RedBlackNode(String.valueOf(0));
         header.left = nullNode;
         header.right = nullNode;
+        header.parent= nullNode;
     }
     /* Function to check if tree is empty */
     public boolean isEmpty()
@@ -42,7 +43,7 @@ public class RBTree
         current = parent = grand = header;
         nullNode.data = item;
 
-        while(current.data.compareTo(item)!=0)//current.data.compareTo(item)!=0
+        while(current.data.compareTo(item)!=0)
         {
             great = grand; grand = parent; parent = current;
             current = item.compareTo(current.data)<0 ? current.left : current.right;
